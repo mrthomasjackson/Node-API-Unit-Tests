@@ -8,10 +8,10 @@ describe('API', function () {
   });
 
   afterEach(function(){
-    server.close();
+    server.close;
   });
 
-  it('"/" should load specified object.', function testHealth(done) {
+  it('"/api/" should load specified object.', function testHealth(done) {
     request(server)
     .get('/api/')
     .set('Accept', 'application/json')
@@ -19,11 +19,20 @@ describe('API', function () {
     .expect(200, {"hello": 'world'},done());
   });
 
-  it('"/status" should return true.', function testHealth(done) {
+  it('"/api/status" should return true.', function testHealth(done) {
     request(server)
     .get('/api/status')
     .set('Accept', 'application/json')
     .expect('Content-Type', /json/)
     .expect(200, true, done());
+  });
+
+  it('"/user/id" should return true.', function testHealth(done) {
+    var fakeUserID = 374;
+    request(server)
+    .get('/api/user/' + fakeUserID)
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(200, {user: {id: fakeUserID}}, done());
   });
 });

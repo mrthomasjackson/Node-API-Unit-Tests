@@ -10,7 +10,7 @@ var port = 3000;
 //   res.json({'hello': 'world'})
 // });
 
-app.use(body_parser.json);
+app.use(body_parser.json());
 
 app.use('/api', require('../routes/api.js')(express))
 
